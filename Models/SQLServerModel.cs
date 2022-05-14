@@ -22,6 +22,12 @@ namespace FinanciallySmart.Models
             return connectionString;
         }
 
+        /// <summary>
+        /// This Method Adds Bank Details to SQL Server. 
+        /// Takes in BankDetails Class Parameter. 
+        /// </summary>
+        /// <param name="bankDetails">(BankModel) BankModel Parameter. </param>
+        /// <returns>returns 1 if the operation was successful. </returns>
         public int AddBankEntry(BankModel bankDetails)
         {
             using(SqlConnection sqlCon = new SqlConnection(connectionString))
