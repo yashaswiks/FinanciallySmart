@@ -11,27 +11,28 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Label x:Name="titleLbl">Settings</Label>
+        <Label x:Name="titleLbl" FontSize="35">Settings</Label>
         <Grid Grid.Row="1" ShowGridLines="True">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="18.9"></ColumnDefinition>
+                <ColumnDefinition Width="101.1"/>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Width="120" HorizontalAlignment="Left">
+            <StackPanel Width="120" HorizontalAlignment="Left" Grid.ColumnSpan="2">
                 <Button x:Name="viewBanksBtn" Grid.Column="0" FontSize="20" Click="viewBanksBtn_Click">View Banks</Button>
                 <Button x:Name="editBanksBtn" Grid.Column="0" FontSize="20" Click="editBanksBtn_Click">Edit Banks</Button>
                 <Button x:Name="addBanksBtn" Grid.Column="0" FontSize="20" Click="addBanksBtn_Click">Add Banks</Button>
             </StackPanel>
             <Frame x:Name="settingsFrame" 
-                   Grid.Column="1"
+                   Grid.Column="2"
                    Source="SettingsFolder/BanksFolder/ViewBanks.xaml"
                    NavigationUIVisibility="Hidden">
-                
+
             </Frame>
-            
+
         </Grid>
     </Grid>
 </Window>
