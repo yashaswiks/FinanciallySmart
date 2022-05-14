@@ -24,5 +24,10 @@ namespace FinanciallySmart.SettingsFolder.BanksFolder
         {
             InitializeComponent();
         }
+
+        private void addBankBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

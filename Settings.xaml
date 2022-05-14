@@ -17,17 +17,16 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="18.9"></ColumnDefinition>
-                <ColumnDefinition Width="101.1"/>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Width="120" HorizontalAlignment="Left" Grid.ColumnSpan="2">
+            <StackPanel Width="120" HorizontalAlignment="Left" Grid.Column="0">
                 <Button x:Name="viewBanksBtn" Grid.Column="0" FontSize="20" Click="viewBanksBtn_Click">View Banks</Button>
                 <Button x:Name="editBanksBtn" Grid.Column="0" FontSize="20" Click="editBanksBtn_Click">Edit Banks</Button>
                 <Button x:Name="addBanksBtn" Grid.Column="0" FontSize="20" Click="addBanksBtn_Click">Add Banks</Button>
             </StackPanel>
             <Frame x:Name="settingsFrame" 
-                   Grid.Column="2"
+                   Grid.Column="1"
                    Source="SettingsFolder/BanksFolder/ViewBanks.xaml"
                    NavigationUIVisibility="Hidden">
 
