@@ -38,7 +38,12 @@ namespace FinanciallySmart.SettingsFolder.BanksFolder
 
         private void editBankBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            SQLServerModel sQLServer = new SQLServerModel();
+            int bankId = Convert.ToInt32(idContentLabel.Content);
+            string bankName = bankNameTxtBox.Text;
+            string bankAccountNumber = bankAccountNumberTxtBox.Text;
+            BankModel bankDetails = new BankModel(bankId, bankName, bankAccountNumber);
+            int o = sQLServer.EditBankDetails(bankDetails);
         }
     }
 }

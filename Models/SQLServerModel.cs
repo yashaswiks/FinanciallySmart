@@ -63,5 +63,24 @@ namespace FinanciallySmart.Models
                 return dt;
             }
         }
+
+        public int EditBankDetails(BankModel bank)
+        {
+            using(SqlConnection sqlCon = new SqlConnection(connectionString))
+                using (SqlCommand command = sqlCon.CreateCommand())
+            {
+                command.CommandText = "UPDATE bank " +
+                    "SET bank_name = @bankName, account_number = @accountNumber " +
+                    "WHERE id = @id";
+
+                command.Parameters.AddWithValue("@bankName", bank.BankName);
+                command.Parameters.AddWithValue("@accountNumber", bank.AccountNumber);
+                command.Parameters.AddWithValue("@id", bank.Id);
+                sqlCon.Open();
+                int o = command.ExecuteNonQuery();
+                sqlCon.Close();
+                return o;
+            }
+        }
     }
 }
