@@ -1,4 +1,5 @@
-﻿using FinanciallySmart.SettingsFolder.BanksFolder;
+﻿using FinanciallySmart.SettingsFolder;
+using FinanciallySmart.SettingsFolder.BanksFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,11 @@ namespace FinanciallySmart
         private void addBanksBtn_Click(object sender, RoutedEventArgs e)
         {
             settingsFrame.Content = new AddBanks();
+        }
+
+        private void transactionIdentifiersBtn_Click(object sender, RoutedEventArgs e)
+        {
+            settingsFrame.Content = new TransactionIdentifiers();
         }
     }
 }

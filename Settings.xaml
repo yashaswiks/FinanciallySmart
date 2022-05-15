@@ -23,6 +23,11 @@
             <StackPanel Width="120" HorizontalAlignment="Left" Grid.Column="0">
                 <Button x:Name="viewBanksBtn" Grid.Column="0" FontSize="20" Click="viewBanksBtn_Click">View Banks</Button>
                 <Button x:Name="addBanksBtn" Grid.Column="0" FontSize="20" Click="addBanksBtn_Click">Add Banks</Button>
+                <Button x:Name="transactionIdentifiersBtn" Grid.Column="0" FontSize="20" Height="60" Click="transactionIdentifiersBtn_Click">
+                    <TextBlock TextWrapping="Wrap" TextAlignment="Center">
+                        Transaction Indentifiers
+                    </TextBlock>
+                </Button>
             </StackPanel>
             <Frame x:Name="settingsFrame" 
                    Grid.Column="1"
