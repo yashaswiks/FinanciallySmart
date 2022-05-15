@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FinanciallySmart.Models;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,15 @@ namespace FinanciallySmart.SettingsFolder.BanksFolder
         public ViewBanks()
         {
             InitializeComponent();
+            SQLServerModel sQLServer = new SQLServerModel();
+            DataTable dt = new DataTable("Banks");
+            dt = sQLServer.GetBankDetails();
+            viewBanksDataGridView.ItemsSource = dt.DefaultView;
+        }
+
+        private void editBanksBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

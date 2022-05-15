@@ -45,5 +45,23 @@ namespace FinanciallySmart.Models
                 }
             }
         }
+
+        /// <summary>
+        /// Returns Details of all Banks from the DB. 
+        /// Returns a DataTable comprising all the data from the DB. 
+        /// </summary>
+        /// <returns>Returns a DataTable.</returns>
+        public DataTable GetBankDetails()
+        {
+            using(SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * from bank";
+                SqlCommand cmd = new SqlCommand(query, sqlCon);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+        }
     }
 }

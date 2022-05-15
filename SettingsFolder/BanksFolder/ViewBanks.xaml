@@ -6,9 +6,27 @@
       xmlns:local="clr-namespace:FinanciallySmart.SettingsFolder.BanksFolder"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ViewBanks">
+      Title="ViewBanks" Background="AliceBlue">
 
     <Grid>
-        <Label>View Banks</Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" FontSize="35">View Banks</Label>
+        <DataGrid x:Name="viewBanksDataGridView" Grid.Row="1" IsReadOnly="True"  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Bank Name" Binding="{Binding bank_name}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Account Number" Binding="{Binding account_number}" Width="*"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Edit" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="editBanksBtn" Content="Edit" Click="editBanksBtn_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>
