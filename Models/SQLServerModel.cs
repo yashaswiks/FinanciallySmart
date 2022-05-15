@@ -64,6 +64,11 @@ namespace FinanciallySmart.Models
             }
         }
 
+        /// <summary>
+        /// This method is used to Edit Bank Details. 
+        /// </summary>
+        /// <param name="bank"></param>
+        /// <returns>1 if the Operation was successful. </returns>
         public int EditBankDetails(BankModel bank)
         {
             using(SqlConnection sqlCon = new SqlConnection(connectionString))
