@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinanciallySmart.Models
 {
-    internal class BankModel
+    public class BankModel
     {
         public int Id { get; set; }
         public String BankName { get; set; }
@@ -14,6 +14,13 @@ namespace FinanciallySmart.Models
 
         public BankModel(string bankName, string accountNumber)
         {
+            BankName = bankName ?? throw new ArgumentNullException(nameof(bankName));
+            AccountNumber = accountNumber ?? throw new ArgumentNullException(nameof(accountNumber));
+        }
+
+        public BankModel(int id, string bankName, string accountNumber)
+        {
+            Id = id;
             BankName = bankName ?? throw new ArgumentNullException(nameof(bankName));
             AccountNumber = accountNumber ?? throw new ArgumentNullException(nameof(accountNumber));
         }

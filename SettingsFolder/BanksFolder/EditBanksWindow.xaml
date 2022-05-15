@@ -1,0 +1,35 @@
+﻿<Window x:Class="FinanciallySmart.SettingsFolder.BanksFolder.EditBanksWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinanciallySmart.SettingsFolder.BanksFolder"
+        mc:Ignorable="d"
+        Title="Edit Bank" Height="244" Width="508">
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label x:Name="editBankLabel" FontSize="35">[Bank Name]</Label>
+        <Grid Grid.Row="1" x:Name="editWpfBankGrid" ShowGridLines="True" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="idLabel">ID</Label>
+            <Label x:Name="idContentLabel" Grid.Column="1">[Bank ID]</Label>
+            <Label x:Name="bankNameLabel" Grid.Row="1">Bank Name:</Label>
+            <TextBox x:Name="bankNameTxtBox" Grid.Row="1" Grid.Column="1" Width="300"></TextBox>
+            <Label x:Name="bankAccountNumberLbl" Grid.Row="2">Bank Account Number:</Label>
+            <TextBox x:Name="bankAccountNumberTxtBox" Grid.Row="2" Grid.Column="1" Width="300"></TextBox>
+            <Button x:Name="editBankBtn" Grid.Row="3" Grid.ColumnSpan="2" Width="100" FontSize="15" Click="editBankBtn_Click">Submit</Button>
+        </Grid>
+    </Grid>
+</Window>

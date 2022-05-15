@@ -33,7 +33,21 @@ namespace FinanciallySmart.SettingsFolder.BanksFolder
 
         private void editBanksBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            try
+            {
+                DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;
+                int bankId = Convert.ToInt32(dataRowView[0]);
+                string bankName = dataRowView[1].ToString();
+                string bankCode = dataRowView[2].ToString();
+
+                BankModel editBank = new BankModel(bankId, bankName, bankCode);
+                EditBanksWindow editBanksWindow = new EditBanksWindow(editBank);
+                editBanksWindow.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

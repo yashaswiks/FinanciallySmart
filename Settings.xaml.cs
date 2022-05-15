@@ -30,11 +30,6 @@ namespace FinanciallySmart
             settingsFrame.Content = new ViewBanks();
         }
 
-        private void editBanksBtn_Click(object sender, RoutedEventArgs e)
-        {
-            settingsFrame.Content = new EditBanks();
-        }
-
         private void addBanksBtn_Click(object sender, RoutedEventArgs e)
         {
             settingsFrame.Content = new AddBanks();
