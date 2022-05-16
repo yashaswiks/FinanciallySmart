@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:FinanciallySmart.SettingsFolder.BanksFolder"
         mc:Ignorable="d"
         Title="Edit Bank" Height="244" Width="508">
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Label x:Name="editBankLabel" FontSize="35">[Bank Name]</Label>
-        <Grid Grid.Row="1" x:Name="editWpfBankGrid" ShowGridLines="True" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid Grid.Row="1" x:Name="editWpfBankGrid" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>

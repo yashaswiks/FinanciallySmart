@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:FinanciallySmart"
         mc:Ignorable="d"
         Title="Settings" Height="450" Width="800">
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Label x:Name="titleLbl" FontSize="35">Settings</Label>
-        <Grid Grid.Row="1" ShowGridLines="True">
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
