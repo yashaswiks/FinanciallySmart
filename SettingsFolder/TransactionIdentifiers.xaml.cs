@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FinanciallySmart.Models;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,41 @@ namespace FinanciallySmart.SettingsFolder
         public TransactionIdentifiers()
         {
             InitializeComponent();
+            PopulateTransactionIdentifierTable();
+        }
+
+        private void addIdentifierBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (newIdentifierTxtBox.Text != String.Empty)
+            {
+                SQLServerModel sQLServer = new SQLServerModel();
+                string transactionIdentifier = newIdentifierTxtBox.Text;
+                int o = sQLServer.AddTransactionIdentifier(transactionIdentifier);
+                if(o == 1)
+                {
+                    PopulateTransactionIdentifierTable();
+                }
+            }
+            else MessageBox.Show("Enter a valid Transaction Identifier");
+        }
+
+        private void PopulateTransactionIdentifierTable()
+        {
+            try
+            {
+                transactionIdentifersGridView.ItemsSource = null;
+                transactionIdentifersGridView.Items.Clear();
+                transactionIdentifersGridView.Items.Refresh();
+
+                SQLServerModel sQLServer = new SQLServerModel();
+                DataTable dt = new DataTable();
+                dt = sQLServer.GetAllTransactionIdentifiers();
+                transactionIdentifersGridView.ItemsSource = dt.DefaultView;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

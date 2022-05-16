@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:FinanciallySmart.SettingsFolder"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TransactionIdentifiers" Background="Red">
+      Title="TransactionIdentifiers">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -18,10 +18,10 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label x:Name="headingLbl" FontSize="35">Transaction Identifiers</Label>
-        <DataGrid AutoGenerateColumns="False" Grid.Row="1">
+        <DataGrid x:Name="transactionIdentifersGridView" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Name" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding code_value}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" >
@@ -37,7 +37,7 @@
             <Label x:Name="addIdentifierLbl" FontSize="25" Grid.ColumnSpan="2">Add new Identifer</Label>
             <Label Grid.Row="1" FontSize="16">Name of Identifier: </Label>
             <TextBox x:Name="newIdentifierTxtBox" Grid.Row="1" Grid.Column="1" Width="150"></TextBox>
-            <Button x:Name="addIdentifierBtn" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2" Width="150">Add Identifier</Button>
+            <Button x:Name="addIdentifierBtn" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2" Width="150" Click="addIdentifierBtn_Click">Add Identifier</Button>
         </Grid>
     </Grid>
 </Page>

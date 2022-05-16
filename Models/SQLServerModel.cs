@@ -47,6 +47,30 @@ namespace FinanciallySmart.Models
         }
 
         /// <summary>
+        /// Call this method to add a new Transaction Identifier to the DB.
+        /// Takes in the name of the Transaction Identifier as the Parameter.
+        /// </summary>
+        /// <param name="transactionIdentifierName">(string) Transaction Indentifier Name</param>
+        /// <returns>Returns 1 if the operation is successful. </returns>
+        public int AddTransactionIdentifier(string transactionIdentifierName)
+        {
+            using(SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                string query = "INSERT INTO code_value (code_value)" +
+                    " VALUES (@codeValue)";
+                using(SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = sqlCon;
+                    cmd.Parameters.Add("@codeValue", SqlDbType.VarChar, 50).Value = transactionIdentifierName;
+                    sqlCon.Open();
+                    int o = cmd.ExecuteNonQuery();
+                    sqlCon.Close();
+                    return o;
+                }
+            }
+        }
+
+        /// <summary>
         /// Returns Details of all Banks from the DB. 
         /// Returns a DataTable comprising all the data from the DB. 
         /// </summary>
@@ -56,6 +80,24 @@ namespace FinanciallySmart.Models
             using(SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 string query = "SELECT * from bank";
+                SqlCommand cmd = new SqlCommand(query, sqlCon);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+        }
+
+        /// <summary>
+        /// Returns All Transaction Identifiers from the DB.
+        /// Returns a DataTable Object comprising of all Transaction Indentifier Details.
+        /// </summary>
+        /// <returns>Returns all Transaction Indentifiers in a DataTable object. </returns>
+        public DataTable GetAllTransactionIdentifiers()
+        {
+            using(SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * from code_value";
                 SqlCommand cmd = new SqlCommand(query, sqlCon);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
