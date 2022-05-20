@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
         <DockPanel>
             <ToolBarTray DockPanel.Dock="Top">
                 <ToolBar>
@@ -14,6 +21,9 @@
                 </ToolBar>
             </ToolBarTray>
         </DockPanel>
+        <local:JournalEntry Grid.Row="1"></local:JournalEntry>
+ 
+
 
     </Grid>
 </Window>

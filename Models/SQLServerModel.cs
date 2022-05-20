@@ -129,5 +129,30 @@ namespace FinanciallySmart.Models
                 return o;
             }
         }
+
+        /// <summary>
+        /// Takes in SELECT Query Statement as Parameter 
+        /// and returns DataTable comprising SELECT statement output. 
+        /// </summary>
+        /// <param name="query">(string) SELECT statement as a Parameter. </param>
+        /// <returns>(DataTable) SELECT statement output.</returns>
+        public DataTable ExecuteQuery(string query)
+        {
+            using(SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                using(SqlCommand cmd = new SqlCommand(query, sqlCon))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    using(SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        using(DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

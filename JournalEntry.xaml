@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="FinanciallySmart.JournalEntry"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FinanciallySmart"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid HorizontalAlignment="Left" Width="400">
+        <Grid.ColumnDefinitions></Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label FontSize="35">Journal Entry</Label>
+        <GroupBox Grid.Row="1" Header="Add Journal Entry">
+            <StackPanel>
+                <TextBlock>Select Type of Journal Entry: </TextBlock>
+                <ComboBox x:Name="journalEntryComboBox"></ComboBox>
+                <TextBlock>Amount: </TextBlock>
+                <TextBox x:Name="amountTxtBox"/>
+                <TextBlock>Select Bank: </TextBlock>
+                <ComboBox x:Name="bankComboBox"></ComboBox>
+                <Button x:Name="addJournalEntryBtn" Click="addJournalEntryBtn_Click">Add Journal Entry</Button>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>
