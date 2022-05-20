@@ -13,7 +13,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Label FontSize="35">Journal Entry</Label>
-        <GroupBox Grid.Row="1" Header="Add Journal Entry">
+        <GroupBox Grid.Row="1" Header="Add Journal Entry" VerticalAlignment="Top">
             <StackPanel>
                 <TextBlock>Select Type of Journal Entry: </TextBlock>
                 <ComboBox x:Name="journalEntryComboBox"></ComboBox>
