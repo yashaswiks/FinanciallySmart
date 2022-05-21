@@ -155,6 +155,11 @@ namespace FinanciallySmart.Models
             }
         }
 
+        /// <summary>
+        /// Call this Method to Add a Journal Entry to the Database. 
+        /// </summary>
+        /// <param name="journalEntry">(JournalEntryModel) Takes in a JournalEntryModel Class Parameter.</param>
+        /// <returns>Returns 1 if the Operation was successful, -1 if the Operation was a failure. </returns>
         public int AddJournalEntry(JournalEntryModel journalEntry)
         {
             using(SqlConnection sqlCon = new SqlConnection(connectionString))
