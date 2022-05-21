@@ -223,6 +223,12 @@ namespace FinanciallySmart.Models
             }
         }
 
+        /// <summary>
+        /// Call this Method to reverse a Journal Entry.
+        /// Takes in ID of the Journal Entry to be reversed. 
+        /// </summary>
+        /// <param name="journalEntryId">(int) ID of the Journal Entry. </param>
+        /// <returns>Returns 1 if the Operation was successful. </returns>
         public int ReverseJournalEntry(int journalEntryId)
         {
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
