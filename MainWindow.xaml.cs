@@ -20,15 +20,27 @@ namespace FinanciallySmart
     /// </summary>
     public partial class MainWindow : Window
     {
+        JournalEntry journalEntry = new JournalEntry();
         public MainWindow()
         {
             InitializeComponent();
+            mainWindowFrame.Navigate(journalEntry);
         }
 
         private void settingsBtn_Click(object sender, RoutedEventArgs e)
         {
             Settings settingWindow = new Settings();
             settingWindow.Show();
+        }
+
+        private void viewTransactions_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindowFrame.Navigate(new ViewJournalEntry());
+        }
+
+        private void addTransactions_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindowFrame.Navigate(journalEntry);
         }
     }
 }

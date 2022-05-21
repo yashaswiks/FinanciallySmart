@@ -17,12 +17,19 @@
         <DockPanel>
             <ToolBarTray DockPanel.Dock="Top">
                 <ToolBar>
+                    <Menu>
+                        <MenuItem Header="Transactions">
+                            <MenuItem Header="Add Transaction" x:Name="addTransactions" Click="addTransactions_Click"/>
+                            <MenuItem Header="View Transactions" x:Name="viewTransactions" Click="viewTransactions_Click"/>
+                        </MenuItem>
+                    </Menu>
+                    <Separator></Separator>
                     <Button x:Name="settingsBtn" Click="settingsBtn_Click">Settings</Button>
                 </ToolBar>
             </ToolBarTray>
         </DockPanel>
-        <local:JournalEntry Grid.Row="1"></local:JournalEntry>
- 
+        <Frame Grid.Row="1" x:Name="mainWindowFrame" NavigationUIVisibility="Hidden"/>
+
 
 
     </Grid>
