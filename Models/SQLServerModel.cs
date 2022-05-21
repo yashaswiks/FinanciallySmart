@@ -192,6 +192,10 @@ namespace FinanciallySmart.Models
             return -1;
         }
 
+        /// <summary>
+        /// This Method Retrieves Journal Entries from SQL Server. 
+        /// </summary>
+        /// <returns>(DataTable) Retrieves all Journal Entries as a DataTable. </returns>
         public DataTable GetJournalEntries()
         {
             // TODO Improve this method based on future requirements for retrieving Journal Entries. 
@@ -208,13 +212,31 @@ namespace FinanciallySmart.Models
                         "je.is_reversed " +
                         "FROM journal_entry je " +
                         "LEFT JOIN code_value jeCv ON je.transaction_type_id = jeCv.id " +
-                        "LEFT JOIN bank b ON je.bank_id = b.id";
+                        "LEFT JOIN bank b ON je.bank_id = b.id " +
+                        "WHERE je.is_reversed = 0; ";
                 SqlCommand cmd = new SqlCommand(query, sqlCon);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 return dt;
 
+            }
+        }
+
+        public int ReverseJournalEntry(int journalEntryId)
+        {
+            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+            using (SqlCommand command = sqlCon.CreateCommand())
+            {
+                command.CommandText = "UPDATE journal_entry " +
+                    "SET is_reversed = 1 " +
+                    "WHERE id = @journalEntryId; ";
+
+                command.Parameters.AddWithValue("@journalEntryId", journalEntryId);
+                sqlCon.Open();
+                int o = command.ExecuteNonQuery();
+                sqlCon.Close();
+                return o;
             }
         }
     }

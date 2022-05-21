@@ -25,21 +25,42 @@ namespace FinanciallySmart
         public ViewJournalEntry()
         {
             InitializeComponent();
-            SQLServerModel sQLServer = new SQLServerModel();
-            DataTable dt = new DataTable("journalEntries");
-            dt = sQLServer.GetJournalEntries();
-            journalEntriesGridView.ItemsSource = dt.DefaultView;
+            PopulateJournalEntries();
         }
 
         private void editJournalEntryBtn_Click(object sender, RoutedEventArgs e)
         {
-            /*
             try
             {
+                SQLServerModel sQLServer = new SQLServerModel();
                 DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;
+                int journalEntryId = Convert.ToInt32(dataRowView[0]);
+                int o = sQLServer.ReverseJournalEntry(journalEntryId);
+                if(o==1)
+                {
+                    PopulateJournalEntries();
+                }
+                else
+                {
+                    MessageBox.Show("The Operation has failed");
+                }
 
             }
-            */
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void PopulateJournalEntries()
+        {
+            journalEntriesGridView.ItemsSource = null;
+            journalEntriesGridView.Items.Clear();
+            journalEntriesGridView.Items.Refresh();
+            SQLServerModel sQLServer = new SQLServerModel();
+            DataTable dt = new DataTable("journalEntries");
+            dt = sQLServer.GetJournalEntries();
+            journalEntriesGridView.ItemsSource = dt.DefaultView;
         }
     }
 }

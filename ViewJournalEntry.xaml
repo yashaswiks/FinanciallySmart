@@ -25,10 +25,10 @@
                 <DataGridTextColumn Header="Bank" Binding="{Binding bank_name}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Transaction Date" Binding="{Binding date_of_transaction}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Is Reversed" Binding="{Binding is_reversed}" Width="*"></DataGridTextColumn>
-                <DataGridTemplateColumn Header="Edit" Width="*">
+                <DataGridTemplateColumn Header="Reverse Transaction" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="editJournalEntryBtn" Content="Edit" Click="editJournalEntryBtn_Click"/>
+                            <Button x:Name="editJournalEntryBtn" Content="Reverse" Click="editJournalEntryBtn_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
