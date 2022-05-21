@@ -58,16 +58,27 @@ namespace FinanciallySmart
 
         private void addJournalEntryBtn_Click(object sender, RoutedEventArgs e)
         {
+            SQLServerModel sQLServer = new SQLServerModel();
             decimal amount; 
             
             if(journalEntryComboBox.SelectedValue != null 
                 && bankComboBox.SelectedValue != null
+                && notesTxtBox.Text != String.Empty
                 && amountTxtBox.Text != String.Empty
                 && decimal.TryParse(amountTxtBox.Text, out amount))
             {
+                int journalEntryTypeId = Convert.ToInt32(journalEntryComboBox.SelectedValue);
+                int bankId = Convert.ToInt32(bankComboBox.SelectedValue);
+                string notes = notesTxtBox.Text;
+                DateTime? dateOfTransaction = dateOfTransactionDatePicker.SelectedDate;
 
-                JournalEntryModel newJournalEntry = new JournalEntryModel(Convert.ToInt32(journalEntryComboBox.SelectedValue),
-                    amount, Convert.ToInt32(bankComboBox.SelectedValue));
+                JournalEntryModel journalEntry = new JournalEntryModel(journalEntryTypeId, amount, notes, bankId, dateOfTransaction,
+                    DateTime.Now, 0);
+                int o = sQLServer.AddJournalEntry(journalEntry);
+                if(o==1)
+                {
+                    MessageBox.Show("Journal Entry has been recorded");
+                }
             }
             else
             {

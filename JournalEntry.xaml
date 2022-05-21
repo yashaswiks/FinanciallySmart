@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FinanciallySmart"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid HorizontalAlignment="Left" Width="400">
@@ -19,6 +20,10 @@
                 <ComboBox x:Name="journalEntryComboBox"></ComboBox>
                 <TextBlock>Amount: </TextBlock>
                 <TextBox x:Name="amountTxtBox"/>
+                <TextBlock>Notes: </TextBlock>
+                <TextBox x:Name="notesTxtBox" TextWrapping="Wrap" AcceptsReturn="True" Height="58"></TextBox>
+                <TextBlock>Date Of Transaction: </TextBlock>
+                <DatePicker x:Name="dateOfTransactionDatePicker" SelectedDate="{x:Static sys:DateTime.Now}"></DatePicker>
                 <TextBlock>Select Bank: </TextBlock>
                 <ComboBox x:Name="bankComboBox"></ComboBox>
                 <Button x:Name="addJournalEntryBtn" Click="addJournalEntryBtn_Click">Add Journal Entry</Button>

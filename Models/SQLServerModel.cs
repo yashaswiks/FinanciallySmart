@@ -154,5 +154,39 @@ namespace FinanciallySmart.Models
                 }
             }
         }
+
+        public int AddJournalEntry(JournalEntryModel journalEntry)
+        {
+            using(SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                string query = "INSERT dbo.journal_entry(transaction_type_id, amount, Notes, bank_id, date_of_transaction, date_of_entry, is_reversed) " +
+                    "VALUES(@transactionTypeId, @amount, @notes, @bankId, @dateOfTransaction, @dateOfEntry, @isReversed); ";
+                using(SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = sqlCon;
+                    cmd.Parameters.Add("@transactionTypeId", SqlDbType.Int).Value = journalEntry.JournalEntryTypeId;
+                    cmd.Parameters.Add("@amount", SqlDbType.Money).Value = journalEntry.Amount;
+                    cmd.Parameters.Add("@notes", SqlDbType.VarChar, 500).Value = journalEntry.Notes;
+                    cmd.Parameters.Add("@bankId", SqlDbType.Int).Value = journalEntry.BankID;
+                    cmd.Parameters.Add("@dateOfTransaction", SqlDbType.Date).Value = journalEntry.DateOfTransaction;
+                    cmd.Parameters.Add("@dateOfEntry", SqlDbType.DateTime).Value = journalEntry.DateOfEntry;
+                    cmd.Parameters.Add("@isReversed", SqlDbType.Int).Value = journalEntry.IsReversed;
+                    try
+                    {
+                        sqlCon.Open();
+                        int o = cmd.ExecuteNonQuery();
+                        sqlCon.Close();
+                        return o;
+                    }
+                    catch(SqlException sQLEx)
+                    {
+                        System.Windows.MessageBox.Show(sQLEx.Message);
+                    }
+                }
+            }
+            return -1;
+
+            
+        }
     }
 }
