@@ -190,8 +190,32 @@ namespace FinanciallySmart.Models
                 }
             }
             return -1;
+        }
 
-            
+        public DataTable GetJournalEntries()
+        {
+            // TODO Improve this method based on future requirements for retrieving Journal Entries. 
+
+            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                string query = "SELECT " +
+                        "je.id, " +
+                        "jeCv.code_value 'transaction_type', " +
+                        "je.amount, " +
+                        "je.Notes, " +
+                        "b.bank_name, " +
+                        "je.date_of_transaction, " +
+                        "je.is_reversed " +
+                        "FROM journal_entry je " +
+                        "LEFT JOIN code_value jeCv ON je.transaction_type_id = jeCv.id " +
+                        "LEFT JOIN bank b ON je.bank_id = b.id";
+                SqlCommand cmd = new SqlCommand(query, sqlCon);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+
+            }
         }
     }
 }

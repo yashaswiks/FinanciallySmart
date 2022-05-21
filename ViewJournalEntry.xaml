@@ -6,10 +6,34 @@
       xmlns:local="clr-namespace:FinanciallySmart"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ViewJournalEntry" Background="Blue">
+      Title="ViewJournalEntry" Background="Red">
 
     <Grid>
-        <Label>[View Journal Entry Page]</Label>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label FontSize="35" x:Name="viewTransactionsLbl">View Transactions</Label>
+        <DataGrid Grid.Row="1" x:Name="journalEntriesGridView" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Transaction Type" Binding="{Binding transaction_type}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Amount" Binding="{Binding Notes}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Bank" Binding="{Binding bank_name}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Transaction Date" Binding="{Binding date_of_transaction}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Is Reversed" Binding="{Binding is_reversed}" Width="*"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Edit" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="editJournalEntryBtn" Content="Edit" Click="editJournalEntryBtn_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Page>
