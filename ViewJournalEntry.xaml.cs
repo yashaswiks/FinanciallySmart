@@ -117,5 +117,18 @@ namespace FinanciallySmart
             clearDataGridView();
             PopulateJournalEntries();
         }
+
+        private void exportReportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SQLServerModel sQLServer = new SQLServerModel();
+            DateTime? startDate = startDatePicker.SelectedDate;
+            DateTime? endDate = endDatePicker.SelectedDate;
+            DataTable dt = sQLServer.GetJournalEntriesBetweenDates(startDate, endDate);
+            if (dt.Rows.Count > 0)
+            {
+                ReportModel report = new ReportModel();
+                report.ExportDataTableAsCSV(dt);
+            }
+        }
     }
 }

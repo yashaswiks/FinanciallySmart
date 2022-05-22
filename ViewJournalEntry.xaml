@@ -50,7 +50,8 @@
             <Button x:Name="viewTransactionsBtn" Click="viewTransactionsBtn_Click">
                 Submit
             </Button>
-            <Button Grid.Row="2" x:Name="resetBtn" Click="resetBtn_Click" HorizontalAlignment="Left" VerticalAlignment="Top">Reset</Button>
+            <Button x:Name="resetBtn" Click="resetBtn_Click" HorizontalAlignment="Left" VerticalAlignment="Top">Reset</Button>
+            <Button x:Name="exportReportBtn" Click="exportReportBtn_Click">Export</Button>
         </StackPanel>
         <DataGrid Grid.Row="3" x:Name="journalEntriesGridView" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
