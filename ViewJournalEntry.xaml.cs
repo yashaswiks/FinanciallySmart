@@ -25,6 +25,7 @@ namespace FinanciallySmart
         public ViewJournalEntry()
         {
             InitializeComponent();
+            clearDataGridView();
             PopulateJournalEntries();
         }
 
@@ -61,6 +62,60 @@ namespace FinanciallySmart
             DataTable dt = new DataTable("journalEntries");
             dt = sQLServer.GetJournalEntries();
             journalEntriesGridView.ItemsSource = dt.DefaultView;
+        }
+
+        private void viewTransactionsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO Add Proper Validations here. 
+            SQLServerModel sQLServer = new SQLServerModel();
+            if (searchByIdTxtBox.Text == String.Empty)
+            {
+                DateTime? startDate = startDatePicker.SelectedDate;
+                DateTime? endDate = endDatePicker.SelectedDate;
+                DataTable dt = sQLServer.GetJournalEntriesBetweenDates(startDate, endDate);
+                if (dt.Rows.Count > 0)
+                {
+                    clearDataGridView();
+                    journalEntriesGridView.ItemsSource = dt.DefaultView;
+                }
+            }
+            else if(searchByIdTxtBox.Text != String.Empty)
+            {
+                int id = Convert.ToInt32(searchByIdTxtBox.Text);
+                DataTable dt = sQLServer.GetJournalEntryById(id);
+                if(dt.Rows.Count > 0)
+                {
+                    clearDataGridView();
+                    journalEntriesGridView.ItemsSource = dt.DefaultView;
+                }
+            }
+        }
+
+        private void searchByIdTxtBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(searchByIdTxtBox.Text != String.Empty)
+            {
+                startDatePicker.IsEnabled = false;
+                endDatePicker.IsEnabled = false;
+            }
+            else if(searchByIdTxtBox.Text == String.Empty)
+            {
+                startDatePicker.IsEnabled = true;
+                endDatePicker.IsEnabled= true;
+            }
+        }
+
+        private void clearDataGridView()
+        {
+            journalEntriesGridView.ItemsSource = null;
+            journalEntriesGridView.Items.Clear();
+            journalEntriesGridView.Items.Refresh();
+        }
+
+        private void resetBtn_Click(object sender, RoutedEventArgs e)
+        {
+            clearDataGridView();
+            PopulateJournalEntries();
         }
     }
 }

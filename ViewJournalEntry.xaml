@@ -11,17 +11,53 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label FontSize="35" x:Name="viewTransactionsLbl">View Transactions</Label>
-        <DataGrid Grid.Row="1" x:Name="journalEntriesGridView" IsReadOnly="True" AutoGenerateColumns="False">
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Margin" Value="10,0,0,0"></Setter>
+                </Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Margin" Value="10,0,0,0"></Setter>
+                </Style>
+                <Style TargetType="{x:Type DatePicker}">
+                    <Setter Property="Margin" Value="10,0,0,0"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock>Search By ID: </TextBlock>
+            <TextBox x:Name="searchByIdTxtBox" Width="118" TextChanged="searchByIdTxtBox_TextChanged"></TextBox>
+            <TextBlock>
+                <Bold>OR List Transactions between </Bold>
+            </TextBlock>
+            <TextBlock>Start Date:</TextBlock>
+            <DatePicker x:Name="startDatePicker"></DatePicker>
+            <TextBlock>End Date: </TextBlock>
+            <DatePicker x:Name="endDatePicker"></DatePicker>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="10,0,0,0"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <Button x:Name="viewTransactionsBtn" Click="viewTransactionsBtn_Click">
+                Submit
+            </Button>
+            <Button Grid.Row="2" x:Name="resetBtn" Click="resetBtn_Click" HorizontalAlignment="Left" VerticalAlignment="Top">Reset</Button>
+        </StackPanel>
+        <DataGrid Grid.Row="3" x:Name="journalEntriesGridView" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Transaction Type" Binding="{Binding transaction_type}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Amount" Binding="{Binding Notes}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Amount" Binding="{Binding amount}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Bank" Binding="{Binding bank_name}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Transaction Date" Binding="{Binding date_of_transaction}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Is Reversed" Binding="{Binding is_reversed}" Width="*"></DataGridTextColumn>

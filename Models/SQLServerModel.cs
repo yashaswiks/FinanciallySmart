@@ -224,6 +224,93 @@ namespace FinanciallySmart.Models
         }
 
         /// <summary>
+        /// This Method returns all Journal Entries between two Dates passed as Parameters.
+        /// </summary>
+        /// <param name="startDate">Start Date</param>
+        /// <param name="endDate">End Date</param>
+        /// <returns>Returns DataTable comprising the Journal Entries, 
+        /// Returns null if there is some error. </returns>
+        public DataTable GetJournalEntriesBetweenDates(DateTime? startDate, DateTime? endDate)
+        {
+            try
+            {
+                var sD = startDate.Value.ToString("yyyy-MM-dd");
+                var eD = endDate.Value.ToString("yyyy-MM-dd");
+                using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                {
+                    string query = String.Format( "SELECT " +
+                            "je.id, " +
+                            "jeCv.code_value 'transaction_type', " +
+                            "je.amount, " +
+                            "je.Notes, " +
+                            "b.bank_name, " +
+                            "je.date_of_transaction, " +
+                            "je.is_reversed " +
+                            "FROM journal_entry je " +
+                            "LEFT JOIN code_value jeCv ON je.transaction_type_id = jeCv.id " +
+                            "LEFT JOIN bank b ON je.bank_id = b.id " +
+                            "WHERE je.is_reversed = 0 " +
+                            "AND je.date_of_transaction BETWEEN '{0}' AND '{1}'; ",sD, eD);
+                    SqlCommand cmd = new SqlCommand(query, sqlCon);
+                    // cmd.Parameters.Add("@startDate", SqlDbType.Str).Value = sD ;
+                    // cmd.Parameters.Add("@endDate", SqlDbType.DateTime2).Value = eD ;
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    return dt;
+
+                }
+            }
+            catch(SqlException ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Returns A Journal Entry By its ID. 
+        /// </summary>
+        /// <param name="id">ID of the journal Entry. </param>
+        /// <returns>Returns a DataTable comprising of the Journal Entry, 
+        /// Returns null if there is some error. </returns>
+        public DataTable GetJournalEntryById(int id)
+        {
+            try
+            {
+                using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                {
+                    string query = String.Format("SELECT " +
+                            "je.id, " +
+                            "jeCv.code_value 'transaction_type', " +
+                            "je.amount, " +
+                            "je.Notes, " +
+                            "b.bank_name, " +
+                            "je.date_of_transaction, " +
+                            "je.is_reversed " +
+                            "FROM journal_entry je " +
+                            "LEFT JOIN code_value jeCv ON je.transaction_type_id = jeCv.id " +
+                            "LEFT JOIN bank b ON je.bank_id = b.id " +
+                            "WHERE je.is_reversed = 0 " +
+                            "AND je.id = '{0}'; ", id);
+                    SqlCommand cmd = new SqlCommand(query, sqlCon);
+                    // cmd.Parameters.Add("@startDate", SqlDbType.Str).Value = sD ;
+                    // cmd.Parameters.Add("@endDate", SqlDbType.DateTime2).Value = eD ;
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    return dt;
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Call this Method to reverse a Journal Entry.
         /// Takes in ID of the Journal Entry to be reversed. 
         /// </summary>
