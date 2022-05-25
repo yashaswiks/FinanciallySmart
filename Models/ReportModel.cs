@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Globalization;
 using System.IO;
+using System.Windows;
 
 namespace FinanciallySmart.Models
 {
@@ -31,7 +32,19 @@ namespace FinanciallySmart.Models
 
 				// writer.ToString().Dump();
 				string path = Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
-				System.IO.File.WriteAllText(path, writer.ToString());
+				string fileName = "\\report.csv";
+				string fullPath = path + fileName;
+				try
+                {
+					File.WriteAllText(fullPath, writer.ToString());
+					MessageBox.Show("The report has been exported to desktop");
+
+				}
+				catch (Exception ex)
+                {
+					MessageBox.Show(ex.Message);
+                }
+
 
 			}
 			

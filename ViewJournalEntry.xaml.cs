@@ -120,6 +120,7 @@ namespace FinanciallySmart
 
         private void exportReportBtn_Click(object sender, RoutedEventArgs e)
         {
+            // TODO Fix this. 
             SQLServerModel sQLServer = new SQLServerModel();
             DateTime? startDate = startDatePicker.SelectedDate;
             DateTime? endDate = endDatePicker.SelectedDate;
