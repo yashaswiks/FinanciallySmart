@@ -130,6 +130,7 @@ namespace FinanciallySmart
                 ReportModel report = new ReportModel();
                 report.ExportDataTableAsCSV(dt);
             }
+            else MessageBox.Show("No Journal Entries exist between the given dates.");
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FinanciallySmart.Models
 {
@@ -331,6 +332,45 @@ namespace FinanciallySmart.Models
                 sqlCon.Close();
                 return o;
             }
+        }
+
+        /// <summary>
+        /// This method returns total Debited Amount from all Banks for the current 
+        /// Month. 
+        /// </summary>
+        /// <returns>Returns DataTable if the Operation was successful
+        /// null if the operation was a failure. </returns>
+        public DataTable GetTotalDebitedAmountOfCurrentMonth()
+        {
+            try
+            {
+                using(SqlConnection sqlCon = new SqlConnection(connectionString))
+                {
+                    string query = "SELECT " +
+                    "b.id, " +
+                    "b.bank_name, " +
+                    "SUM(je.amount) total_amount " +
+                    "FROM bank b " +
+                    "LEFT JOIN journal_entry je ON je.bank_id = b.id " +
+                    "WHERE je.is_reversed = 0 " +
+                    "AND " +
+                    "je.date_of_transaction " +
+                    "BETWEEN DATEADD(DD, -(DAY(GETDATE() - 1)), GETDATE()) " +
+                    "AND DATEADD(DD,-(DAY(GETDATE())), DATEADD(MM, 1, GETDATE())) " +
+                    "AND je.transaction_type_id = 1 " +
+                    "GROUP BY b.bank_name, b.id";
+                    SqlCommand cmd = new SqlCommand(query, sqlCon);
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    return dt;
+                }
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return null;
         }
     }
 }

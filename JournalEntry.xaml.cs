@@ -54,6 +54,14 @@ namespace FinanciallySmart
             bankComboBox.DisplayMemberPath = "bank_name";
             bankComboBox.SelectedValuePath = "id";
 
+
+            overViewDebitGridTable.ItemsSource = null;
+            overViewDebitGridTable.Items.Clear();
+            overViewDebitGridTable.Items.Refresh();
+            DataTable dt2 = new DataTable();
+            dt2 = sQLServer.GetTotalDebitedAmountOfCurrentMonth();
+            overViewDebitGridTable.ItemsSource = dt2.DefaultView;
+
         }
 
         private void addJournalEntryBtn_Click(object sender, RoutedEventArgs e)
